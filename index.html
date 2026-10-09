@@ -1,0 +1,64 @@
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0d10">
+<title>BestColdWallet · Crypto Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+<header><div class="brand" aria-label="BestColdWallet"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M13 12l11 11 11-11M13 36l11-11 11 11" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 10v28M18 17h12M18 31h12" stroke="currentColor" stroke-width="2" opacity=".55"/></svg></span><strong>BestColdWallet</strong></div><div class="actions"><button id="themeStudio" class="header-tool">Temas</button><button id="theme" class="header-tool" aria-label="Cambiar modo de color">☼</button><button id="login" class="hidden">Entrar con Google</button></div></header>
+<main>
+<section class="hero"><div><small>CRYPTO PORTFOLIO</small><h1>Mis carteras</h1><p>Tu patrimonio cripto, claro y bajo control.</p></div><button id="newPortfolio" class="primary">＋ Nueva cartera</button></section>
+<nav id="portfolios"></nav>
+<section class="stats"><article><small>VALOR TOTAL</small><strong id="total">0,00 €</strong><span id="change">—</span></article><article><small>ACTIVOS</small><strong id="count">0</strong><span>tokens</span></article><article><small>CARTERA</small><strong id="current">Principal</strong><span id="visibility">Visible</span></article></section>
+<section class="card chart-card"><div class="section-title"><div><small>EVOLUCIÓN</small><h2 id="chartTitle">Cartera completa</h2></div><div class="chart-unit">EUR · €</div></div><div class="ranges" id="ranges"><button data-range="1">24H</button><button data-range="7">7D</button><button class="active" data-range="30">30D</button><button data-range="180">6 meses</button><button data-range="365">1 año</button><button data-range="730">2 años</button><button data-range="1095">3 años</button><button data-range="1825">5 años</button><button data-range="max">MAX</button></div><div class="quick-label"><span>SELECCIÓN RÁPIDA</span><small>Elige un token para ver solo su evolución</small></div><div class="quick-tokens" id="quickTokens"></div><div class="chart"><canvas id="chart"></canvas><div id="chartTip" class="chart-tip hidden"></div><div id="empty">Selecciona al menos un activo.</div></div><div id="chartSelected" class="chart-selected">Haz clic en una línea para identificar el token</div><div id="legend"></div></section>
+<section class="assets-head"><div><small>ACTIVOS</small><h2>Selecciona qué quieres comparar</h2></div><div class="asset-actions"><button id="importAssets" class="secondary">⇩ Importar texto</button><button id="newAsset">＋ Añadir activo</button></div></section>
+<div class="asset-sort" id="assetSort"><span>Ordenar:</span><button type="button" data-sort="total" class="active">Valor total</button><button type="button" data-sort="price">Precio</button><button type="button" data-sort="amount">Cantidad</button></div><section id="assets"></section>
+</main><footer><span>Precios: CoinLore · API pública gratuita</span><span id="status">Listo</span></footer>
+</div>
+
+<dialog id="portfolioDialog"><form method="dialog" id="portfolioForm"><button class="x">×</button><small>NUEVA CARTERA</small><h2>Crear cartera</h2><input id="portfolioName" required maxlength="30" placeholder="Ej. Largo plazo"><label><input id="portfolioHidden" type="checkbox"> Ocultar cartera</label><button class="primary">Guardar</button></form></dialog>
+
+<dialog id="assetDialog"><form method="dialog" id="assetForm"><button class="x">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ×</button><small>NUEVO ACTIVO</small><h2>Añadir criptomoneda</h2><input id="search" placeholder="XRP, Bitcoin, Stellar…" autocomplete="off"><div id="results"></div><input id="amount" type="number" min="0" step="any" required placeholder="Cantidad"><input id="coinId" type="hidden"><button class="primary">Añadir</button></form></dialog>
+
+<dialog id="importDialog"><form method="dialog" id="importForm"><button class="x" type="button" id="closeImport">×</button><small>IMPORTACIÓN INTELIGENTE</small><h2>Importar cartera</h2><p class="dialog-help">Pega tus criptomonedas tal como las tengas escritas. La app las interpretará y después podrás verificar cada una antes de añadirlas.</p><textarea id="importText" rows="7" placeholder="3000 xrp, 45 qnt, 0,005 btc, 1000shibainu, 2500 xlm"></textarea><button type="button" class="primary" id="analyzeImport">Analizar texto</button><div id="importStatus"></div><div id="importResults"></div><div class="import-footer"><button type="button" id="cancelImport">Cancelar</button><button type="submit" class="primary" id="confirmImport" disabled>Añadir confirmados</button></div></form></dialog>
+
+
+
+<dialog id="themeDialog"><form method="dialog" id="themeForm"><button class="x" type="button" id="closeTheme">×</button><small>DESIGN SYSTEM</small><h2>Temas premium</h2><p class="dialog-help">Personaliza la identidad visual de BestColdWallet. La elección queda guardada en este dispositivo.</p><div class="theme-section"><b>Paletas</b><div id="themePalettes" class="theme-palettes"></div></div><div class="theme-section"><b>Tipografía</b><div id="themeFonts" class="theme-fonts"></div></div><div class="theme-preview"><span>BESTCOLDWALLET</span><strong>Digital wealth, beautifully managed.</strong></div><button type="button" class="primary" id="closeTheme2">Aplicar y cerrar</button></form></dialog>
+
+<script type="module" src="app.js"></script>
+</body></html>
